@@ -22,7 +22,7 @@ typedef struct pile_t
 {
     int taille;
     int sommet;
-    eltType * base;
+    eltType_pile * base;
 } pile_t;
 
 /**

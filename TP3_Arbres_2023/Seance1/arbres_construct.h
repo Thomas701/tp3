@@ -7,14 +7,14 @@
 
 #include "../eltsArbre.h"
 
-/** TO DO
+/**
  * @brief lire le fichier contenant la representation prefixee de l'arborescence
  * @param [in] fileName le nom du fichier contenant la representation prefixee
  * @param [in, out] tabEltPref tableau des elements de la representation prefixee
  * @param [in, out] nbEltsPref l'adresse memoire contenant le nombre des elements du tabEltPref
  * @return le nombre de racines
  */
-// lirePref_fromFileName();
+int lirePref_fromFileName(char * name, eltPrefPostFixee_t * tab, int * nbEltsPref);
 
 /** TO DO
  * @brief afficher les elements de la representation prefixee sur un flux de sortie
@@ -24,12 +24,12 @@
  */
 // printTabEltPref();
 
-/** TO DO
+/**
  * @brief creer et initialiser un nouveau point de l'arborescence
  * @param [in] val la valeur du point de type char
  * @return l'adresse du nouveau point 
  */
-// allocPoint();
+cell_lvlh_t *allocPoint(char val);
 
 /**
  * @brief construire un arbre avec lvlh a partir de representation prefixee

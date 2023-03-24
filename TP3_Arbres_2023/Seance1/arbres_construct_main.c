@@ -17,7 +17,7 @@ TEST(nouvCell) {
 	cell_lvlh_t *new;
 
 	new = allocPoint('A');
-	REQUIRE( NULL != new ); 
+	REQUIRE( NULL != new );
 	CHECK( 'A' == new->val );
 	CHECK( NULL == new->lv );
 	CHECK( NULL == new->lh );
@@ -25,7 +25,7 @@ TEST(nouvCell) {
 	free(new);
 }
 
-/*
+
 TEST(lirePref_fromFileName_exTP) {
 	int nbRacines = 0;
 	int nbEltsPref = 0;
@@ -50,7 +50,7 @@ TEST(lirePref_fromFileName_exTP) {
 	CHECK( 'I' == tabEltPref[nbEltsPref-1].val );
 	CHECK( 0 == tabEltPref[nbEltsPref-1].nbFils );
 }
-
+/*
 TEST(printTabEltPref_exTP) {
 	int nbRacines = 0;
 	int nbEltsPref = 0;

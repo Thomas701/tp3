@@ -16,9 +16,37 @@
  * @param [in, out] nbEltsPref l'adresse memoire contenant le nombre des elements du tabEltPref
  * @return le nombre de racines
  */
- lirePref_fromFileName(char * name, eltPrefPostFixee_t * tab, int * nbEltsPref)
+int lirePref_fromFileName(char * name, eltPrefPostFixee_t * tab, int * nbEltsPref)
 {
-
+  int nbRacine = 0;
+  *nbEltsPref = 0;
+  char c;
+  int tabIndex = 0;
+  int fils;
+  FILE * f = fopen(name, "r");
+  char val;
+  
+  if(f){
+    while((c = getc(f)) != EOF && c != ' '){
+      nbRacine *= 10;
+      nbRacine += c - '0';
+    }
+    while(c != EOF){
+      while((c = getc(f)) != EOF && c != ' '){
+	val = c;
+      }
+      tab[tabIndex].val = val;
+      (*nbEltsPref)++;
+      fils = 0;
+      while((c = getc(f)) != EOF && c != ' '){
+	fils *= 0;
+	fils += c - '0';
+      }
+      tab[tabIndex++].nbFils = fils;
+    }
+    fclose(f);
+  }
+  return nbRacine;
 }
 
 /** TO DO
@@ -32,15 +60,21 @@
 // // TO DO
 // }
 
-/** TO DO
+/**
  * @brief creer et initialiser un nouveau point de l'arborescence
  * @param [in] val la valeur du point
  * @return l'adresse du nouveau point 
  */
-// allocPoint()
-// {
-// // TO DO
-// }
+cell_lvlh_t *allocPoint(char val)
+{
+  cell_lvlh_t *new = (cell_lvlh_t*)malloc(sizeof(cell_lvlh_t));
+  if(new){
+    new->val = val;
+    new->lh = NULL;
+    new->lv = NULL;
+  }
+  return new;
+}
 
 /** TO DO
  * @brief construire un arbre avec lvlh a partir de representation prefixee

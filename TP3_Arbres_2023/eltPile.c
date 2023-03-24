@@ -6,13 +6,15 @@
 
 #include "eltPile.h"
 
-/** TO DO
+/**
  * @brief Copier la valeur d'un element dans un autre emplacement
  * @param [in] src l'adresse de l'element a copier
  * @param [in] dest l'adresse de la destination
  */
 void copyElt(eltType_pile * source, eltType_pile * destination)
 {
-    *destination = *source;
+  destination->adrCell = source->adrCell;
+  destination->adrPrec = source->adrPrec;
+  destination->nbFils_ou_Freres = destination->nbFils_ou_Freres;
 }
 
