@@ -60,8 +60,12 @@ int lirePref_fromFileName(char * name, eltPrefPostFixee_t * tab, int * nbEltsPre
 void printTabEltPref(FILE *file, eltPrefPostFixee_t *tabEltPref, int nbEltsPref)
 {
   for(int i = 0; i < nbEltsPref; i++){
-    fprintf(file, "%c %d ", tabEltPref[i].val, tabEltPref[i].nbFils);
+    fprintf(file, "(%c,%d)", tabEltPref[i].val, tabEltPref[i].nbFils);
+    if(i != nbEltsPref-1){
+      fprintf(file, " ");
+    }
   }
+  fprintf(file, "\n");
 }
 
 /**

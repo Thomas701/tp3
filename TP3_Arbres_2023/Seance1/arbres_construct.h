@@ -42,7 +42,7 @@ cell_lvlh_t *allocPoint(char val);
 */
 // pref2lvlh();
 
-/** TO DO
+/**
  * @brief liberer les blocs memoire d'un arbre
  * @param [in] adrPtRacine l'adresse du pointeur de la racine d'un arbre
  */

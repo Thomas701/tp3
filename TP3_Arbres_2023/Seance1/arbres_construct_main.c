@@ -67,7 +67,7 @@ TEST(printTabEltPref_exTP) {
 	fprintf(file, "%d ", nbRacines);
 	printTabEltPref(file, tabEltPref, nbEltsPref);
 	fclose(file);
-	printf("buffer : %s\n", buffer);
+	//printf("buffer : %s\n", buffer);
 	CHECK( 0 == strcmp(buffer, "2 (A,3) (B,2) (E,0) (J,0) (D,0) (H,1) (G,0) (C,2) (F,3) (K,0) (M,0) (T,0) (I,0)\n") ); 
 }
 /*
