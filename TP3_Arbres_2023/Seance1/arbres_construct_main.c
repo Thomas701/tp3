@@ -50,7 +50,7 @@ TEST(lirePref_fromFileName_exTP) {
 	CHECK( 'I' == tabEltPref[nbEltsPref-1].val );
 	CHECK( 0 == tabEltPref[nbEltsPref-1].nbFils );
 }
-/*
+
 TEST(printTabEltPref_exTP) {
 	int nbRacines = 0;
 	int nbEltsPref = 0;
@@ -67,9 +67,10 @@ TEST(printTabEltPref_exTP) {
 	fprintf(file, "%d ", nbRacines);
 	printTabEltPref(file, tabEltPref, nbEltsPref);
 	fclose(file);
+	printf("buffer : %s\n", buffer);
 	CHECK( 0 == strcmp(buffer, "2 (A,3) (B,2) (E,0) (J,0) (D,0) (H,1) (G,0) (C,2) (F,3) (K,0) (M,0) (T,0) (I,0)\n") ); 
 }
-
+/*
 // 2  (A,3)  (B,2)  (E,0)  (J,0)  (D,0)  (H,1) (G,0)  (C,2)  (F,3)  (K,0)  (M,0)  (T,0)  (I,0)
 TEST(pref2lvlh1_exTP) {
 	int nbRacines = 0;

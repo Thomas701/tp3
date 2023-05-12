@@ -5,6 +5,7 @@
 #ifndef __ARBRE_CONSTRUCT_H__
 #define __ARBRE_CONSTRUCT_H__
 
+#include <stdio.h>
 #include "../eltsArbre.h"
 
 /**
@@ -16,13 +17,13 @@
  */
 int lirePref_fromFileName(char * name, eltPrefPostFixee_t * tab, int * nbEltsPref);
 
-/** TO DO
+/**
  * @brief afficher les elements de la representation prefixee sur un flux de sortie
  * @param file : le flux de sortie
  * @param [in, out] tabEltPref tableau des elements de la representation prefixee
  * @param [in, out] nbEltsPref le nombre des elements du tabEltPref
  */
-// printTabEltPref();
+void printTabEltPref(FILE*, eltPrefPostFixee_t[NB_ELTPREF_MAX], int);
 
 /**
  * @brief creer et initialiser un nouveau point de l'arborescence

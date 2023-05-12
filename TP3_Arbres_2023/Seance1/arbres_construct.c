@@ -49,16 +49,20 @@ int lirePref_fromFileName(char * name, eltPrefPostFixee_t * tab, int * nbEltsPre
   return nbRacine;
 }
 
-/** TO DO
- * @brief afficher les elements de la representation prefixee sur un flux de sortie
+/**
+ * @brief afficher les elements de la representation prefixee sur un flux de
+ * sortie
  * @param file : le flux de sortie
- * @param [in, out] tabEltPref tableau des elements de la representation prefixee
+ * @param [in, out] tabEltPref tableau des elements de la representation
+ * prefixee
  * @param [in, out] nbEltsPref le nombre des elements du tabEltPref
  */
-// void printTabEltPref(FILE *file, eltPrefPostFixee_t *tabEltPref, int nbEltsPref)
-// {
-// // TO DO
-// }
+void printTabEltPref(FILE *file, eltPrefPostFixee_t *tabEltPref, int nbEltsPref)
+{
+  for(int i = 0; i < nbEltsPref; i++){
+    fprintf(file, "%c %d ", tabEltPref[i].val, tabEltPref[i].nbFils);
+  }
+}
 
 /**
  * @brief creer et initialiser un nouveau point de l'arborescence
