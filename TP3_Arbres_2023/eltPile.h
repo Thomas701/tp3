@@ -18,7 +18,7 @@
 typedef struct eltType_pile
 {
     cell_lvlh_t * adrCell;
-    cell_lvlh_t * adrPrec;
+    cell_lvlh_t ** adrPrec;
     int nbFils_ou_Freres;
 } eltType_pile;
 

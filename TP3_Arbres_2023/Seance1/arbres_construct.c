@@ -92,10 +92,47 @@ cell_lvlh_t *allocPoint(char val)
  *     - NULL si l'arbre resultatnt est vide
  *     - l'adresse de la racine de l'arbre sinon
 */
-//  pref2lvlh()
-// {
-// // TO DO
-// }
+ cell_lvlh_t * pref2lvlh(eltPrefPostFixee_t *tabEltPref, int nbRacines)
+{
+    pile_t * pile = initPile(NB_ELTPREF_MAX);
+    cell_lvlh_t * adr_tete = allocPoint(NULL);
+    int courlc = 0;
+    cell_lvlh_t ** pprec = &adr_tete;
+    eltType_pile elem_pile;
+    int nbr_fils_frere = nbRacines;
+    int * code;
+    while (nbr_fils_frere > 0 || !estVidePile(pile))
+    {
+        if (nbr_fils_frere > 0)
+        {
+            cell_lvlh_t *new = allocPoint(tabEltPref[courlc].val);
+            *pprec = new;
+            elem_pile.nbFils_ou_Freres = nbr_fils_frere-1;
+            elem_pile.adrCell = NULL;
+            elem_pile.adrPrec = &new->lh;
+            empiler(pile, &elem_pile, code); 
+            if (*code == 1)
+            {
+                printf("ERREUR: la pile est pleine!\n");
+                return;
+            }
+            pprec = &new->lv;            
+            nbr_fils_frere = tabEltPref[courlc].nbFils;
+            courlc++;
+        }
+        else
+        {
+            if (!estVidePile(pile))
+            {
+                depiler(pile, &elem_pile, code);
+                pprec = elem_pile.adrPrec;
+                nbr_fils_frere = elem_pile.nbFils_ou_Freres;
+            }
+        }
+    }
+    libererPile(&pile);
+    return adr_tete;
+}
 
 /** TO DO
  * @brief liberer les blocs memoire d'un arbre

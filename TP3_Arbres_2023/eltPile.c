@@ -13,8 +13,6 @@
  */
 void copyElt(eltType_pile * source, eltType_pile * destination)
 {
-  destination->adrCell = source->adrCell;
-  destination->adrPrec = source->adrPrec;
-  destination->nbFils_ou_Freres = destination->nbFils_ou_Freres;
+  *source = *destination;
 }
 
