@@ -70,26 +70,36 @@ TEST(printTabEltPref_exTP) {
 	//printf("buffer : %s\n", buffer);
 	CHECK( 0 == strcmp(buffer, "2 (A,3) (B,2) (E,0) (J,0) (D,0) (H,1) (G,0) (C,2) (F,3) (K,0) (M,0) (T,0) (I,0)\n") ); 
 }
-/*
+
 // 2  (A,3)  (B,2)  (E,0)  (J,0)  (D,0)  (H,1) (G,0)  (C,2)  (F,3)  (K,0)  (M,0)  (T,0)  (I,0)
 TEST(pref2lvlh1_exTP) {
 	int nbRacines = 0;
 	int nbEltsPref = 0;
 	eltPrefPostFixee_t tabEltPref[NB_ELTPREF_MAX];
 	cell_lvlh_t *racine = NULL;
-	
-	char buffer[1024];
-	FILE * file = fmemopen(buffer, 1024, "w");
-	REQUIRE ( NULL != file);
 
 	printf("\033[35m\npref2lvlh1_exTP :");
 	printf("\033[0m\n");
 
 	nbRacines = lirePref_fromFileName("../pref_exTP.txt", tabEltPref, &nbEltsPref);
+	racine = pref2lvlh(tabEltPref, nbRacines);
+	CHECK(racine->val == 'A');
+    CHECK(racine->lv->val == 'B');
+    CHECK(racine->lv->lv->val == 'E');
+    CHECK(racine->lv->lv->lh->val == 'J');
+    CHECK(racine->lv->lh->val == 'D');
+    CHECK(racine->lv->lh->lh->val == 'H');
+    CHECK(racine->lv->lh->lh->lv->val == 'G');
 
-	// TO DO
+    CHECK(racine->lh->val == 'C');
+    CHECK(racine->lh->lv->val == 'F');
+    CHECK(racine->lh->lv->lv->val == 'K');
+    CHECK(racine->lh->lv->lv->lh->val == 'M');
+    CHECK(racine->lh->lv->lv->lh->lh->val == 'T');
+    CHECK(racine->lh->lv->lh->val == 'I');
+	libererArbre(&racine);
 }
-*/
+
 
 END_TEST_GROUP(ARBRE_CONSTRUCT)
 

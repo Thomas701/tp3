@@ -26,21 +26,26 @@ int lirePref_fromFileName(char * name, eltPrefPostFixee_t * tab, int * nbEltsPre
   FILE * f = fopen(name, "r");
   char val;
   
-  if(f){
-    while((c = getc(f)) != EOF && c != ' '){
+  if(f)
+  {
+    while((c = getc(f)) != EOF && c != ' ')
+    {
       nbRacine *= 10;
       nbRacine += c - '0';
     }
-    while(c != EOF){
-      while((c = getc(f)) != EOF && c != ' '){
-	val = c;
+    while(c != EOF)
+    {
+      while((c = getc(f)) != EOF && c != ' ')
+      {
+	      val = c;
       }
       tab[tabIndex].val = val;
       (*nbEltsPref)++;
       fils = 0;
-      while((c = getc(f)) != EOF && c != ' '){
-	fils *= 0;
-	fils += c - '0';
+      while((c = getc(f)) != EOF && c != ' ')
+      {
+	      fils *= 0;
+	      fils += c - '0';
       }
       tab[tabIndex++].nbFils = fils;
     }
@@ -73,11 +78,11 @@ void printTabEltPref(FILE *file, eltPrefPostFixee_t *tabEltPref, int nbEltsPref)
  * @param [in] val la valeur du point
  * @return l'adresse du nouveau point 
  */
-cell_lvlh_t *allocPoint(char val)
+cell_lvlh_t *allocPoint(char value)
 {
   cell_lvlh_t *new = (cell_lvlh_t*)malloc(sizeof(cell_lvlh_t));
   if(new){
-    new->val = val;
+    new->val = value;
     new->lh = NULL;
     new->lv = NULL;
   }
@@ -92,39 +97,32 @@ cell_lvlh_t *allocPoint(char val)
  *     - NULL si l'arbre resultatnt est vide
  *     - l'adresse de la racine de l'arbre sinon
 */
- cell_lvlh_t * pref2lvlh(eltPrefPostFixee_t *tabEltPref, int nbRacines)
+cell_lvlh_t * pref2lvlh(eltPrefPostFixee_t *tabEltPref, int nbRacines)
 {
     pile_t * pile = initPile(NB_ELTPREF_MAX);
-    cell_lvlh_t * adr_tete = allocPoint(NULL);
-    int courlc = 0;
+    cell_lvlh_t * adr_tete = NULL;
     cell_lvlh_t ** pprec = &adr_tete;
     eltType_pile elem_pile;
     int nbr_fils_frere = nbRacines;
-    int * code;
-    while (nbr_fils_frere > 0 || !estVidePile(pile))
-    {
-        if (nbr_fils_frere > 0)
-        {
-            cell_lvlh_t *new = allocPoint(tabEltPref[courlc].val);
-            *pprec = new;
+    int courlc = 0;
+    int code = 1;
+    while (nbr_fils_frere > 0 || !estVidePile(pile)) {
+        if (nbr_fils_frere > 0) {
+            *pprec = allocPoint(tabEltPref[courlc].val);
+            printf("J'alloue %c\n", tabEltPref[courlc].val);
             elem_pile.nbFils_ou_Freres = nbr_fils_frere-1;
-            elem_pile.adrCell = NULL;
-            elem_pile.adrPrec = &new->lh;
-            empiler(pile, &elem_pile, code); 
-            if (*code == 1)
-            {
+            elem_pile.adrPrec = &((*pprec)->lh);
+            empiler(pile, &elem_pile, &code); 
+            if (code == 1) {
                 printf("ERREUR: la pile est pleine!\n");
-                return;
+                EXIT_FAILURE;
             }
-            pprec = &new->lv;            
+            pprec = &((*pprec)->lv);            
             nbr_fils_frere = tabEltPref[courlc].nbFils;
             courlc++;
-        }
-        else
-        {
-            if (!estVidePile(pile))
-            {
-                depiler(pile, &elem_pile, code);
+        } else {
+            if (!estVidePile(pile)) {
+                depiler(pile, &elem_pile, &code);
                 pprec = elem_pile.adrPrec;
                 nbr_fils_frere = elem_pile.nbFils_ou_Freres;
             }
@@ -138,7 +136,27 @@ cell_lvlh_t *allocPoint(char val)
  * @brief liberer les blocs memoire d'un arbre
  * @param [in] adrPtRacine l'adresse du pointeur de la racine d'un arbre
  */
-//  libererArbre()
-// {
-// // TO DO
-// }
+void libererArbre(cell_lvlh_t ** racine)
+{
+  pile_t * pile = initPile(NB_ELTPREF_MAX);
+  cell_lvlh_t * cour = *racine;
+  cell_lvlh_t * cour2;
+  eltType_pile elem_pile;
+  int code = 1;
+  while (cour != NULL)
+  {
+    elem_pile.adrCell = cour;
+    empiler(pile, &elem_pile, &code);
+    cour = cour->lv;
+    while (cour == NULL && !estVidePile(pile))
+    {
+      depiler(pile, &elem_pile, &code);
+      cour = elem_pile.adrCell;
+      cour2 = cour->lh;
+      printf("cour %c a été free \n", cour->val);
+      free(cour);
+      cour = cour2;
+    }
+  }
+  libererPile(&pile);
+}
