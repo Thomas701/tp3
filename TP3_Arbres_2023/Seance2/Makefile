@@ -1,4 +1,4 @@
-CC = gcc-11
+CC = gcc
 CFLAGS = -Wall -Wextra -g
 LDFLAGS =
 
@@ -18,10 +18,10 @@ OBJ = $(SRC:%.c=%.o)
 
 arbres_parcours_main: $(OBJ) $(HEADERS)
 	$(CC) $(OBJ) -o $@ $(LDFLAGS)
-	
+
 arbres_parcours.o: arbres_parcours.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
-	
+
 ../Seance1/arbres_construct.o: ../Seance1/arbres_construct.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 

@@ -13,6 +13,6 @@
  */
 void copyElt(eltType_pile * source, eltType_pile * destination)
 {
-  *source = *destination;
+  *destination = *source;
 }
 

@@ -89,7 +89,7 @@ cell_lvlh_t *allocPoint(char value)
   return new;
 }
 
-/** TO DO
+/**
  * @brief construire un arbre avec lvlh a partir de representation prefixee
  * @param [in] tabEltPref tableau des elements de la representation prefixee
  * @param [in] nbRacines nombre de racines de l'arborescence
@@ -109,7 +109,6 @@ cell_lvlh_t * pref2lvlh(eltPrefPostFixee_t *tabEltPref, int nbRacines)
     while (nbr_fils_frere > 0 || !estVidePile(pile)) {
         if (nbr_fils_frere > 0) {
             *pprec = allocPoint(tabEltPref[courlc].val);
-            printf("J'alloue %c\n", tabEltPref[courlc].val);
             elem_pile.nbFils_ou_Freres = nbr_fils_frere-1;
             elem_pile.adrPrec = &((*pprec)->lh);
             empiler(pile, &elem_pile, &code); 
@@ -132,7 +131,7 @@ cell_lvlh_t * pref2lvlh(eltPrefPostFixee_t *tabEltPref, int nbRacines)
     return adr_tete;
 }
 
-/** TO DO
+/**
  * @brief liberer les blocs memoire d'un arbre
  * @param [in] adrPtRacine l'adresse du pointeur de la racine d'un arbre
  */
@@ -153,7 +152,6 @@ void libererArbre(cell_lvlh_t ** racine)
       depiler(pile, &elem_pile, &code);
       cour = elem_pile.adrCell;
       cour2 = cour->lh;
-      printf("cour %c a été free \n", cour->val);
       free(cour);
       cour = cour2;
     }

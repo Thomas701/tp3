@@ -26,7 +26,7 @@ TEST(nouvCell) {
 	free(new);
 }
 
-/*
+
 TEST(getNbFils_ou_Freres) {
 	int nbRacines = 0;
 	int nbEltsPref = 0;
@@ -44,21 +44,22 @@ TEST(getNbFils_ou_Freres) {
 	racine = pref2lvlh(tabEltPref, nbRacines);
 
 	REQUIRE( NULL != racine );
-//	printf("A = %c\n", racine->val);
+	//	printf("A = %c\n", racine->val);
+	//printf("tmp : %d\n", getNbFils_ou_Freres(racine));
 	CHECK( 2 == getNbFils_ou_Freres(racine) );     // 2 freres y compris lui-meme
 	CHECK( 3 == getNbFils_ou_Freres(racine->lv) ); // 3 fils
 
 	REQUIRE( NULL != racine->lv );
-//	printf("B = %c\n", racine->lv->val);
+	//	printf("B = %c\n", racine->lv->val);
 	CHECK( 3 == getNbFils_ou_Freres(racine->lv) );     // 3 freres y compris lui-meme
 	CHECK( 2 == getNbFils_ou_Freres(racine->lv->lv) ); // 2 fils
 
 	REQUIRE( NULL != racine->lv->lh );
-//	printf("D = %c\n", racine->lv->lh->val);
+	//	printf("D = %c\n", racine->lv->lh->val);
 	CHECK( 0 == getNbFils_ou_Freres(racine->lv->lh->lv) ); // 0 fils
 
 	REQUIRE( NULL != racine->lv->lh->lh );
-//	printf("H = %c\n", racine->lv->lh->lh->val);
+	//	printf("H = %c\n", racine->lv->lh->lh->val);
 	CHECK( 1 == getNbFils_ou_Freres(racine->lv->lh->lh->lv) ); // 1 fils
 
 	libererArbre(&racine);
@@ -80,14 +81,14 @@ TEST(printPostfixee) {
 	nbRacines = lirePref_fromFileName("../pref_exTP.txt", tabEltPref, &nbEltsPref);
 	racine = pref2lvlh(tabEltPref, nbRacines);
 
-	printPostfixee(stdout, racine);
+	//	printPostfixee(stdout, racine);
 	printPostfixee(file, racine);
 	fclose(file);
 	CHECK( 0 == strcmp(buffer,"(E,0) (J,0) (B,2) (D,0) (G,0) (H,1) (A,3) (K,0) (M,0) (T,0) (F,3) (I,0) (C,2) 2\n") );
 	
 	libererArbre(&racine);
 }
-*/
+
 
 END_TEST_GROUP(ARBRE_PARCOURS)
 
