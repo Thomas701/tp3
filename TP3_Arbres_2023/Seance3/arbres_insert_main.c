@@ -26,7 +26,7 @@ TEST(nouvCell) {
 	free(new);
 }
 
-/*
+
 TEST(rechercher_v) {
 	int nbRacines = 0;
 	int nbEltsPref = 0;
@@ -77,7 +77,7 @@ TEST(rechercherPrecFilsTries) {
 
 	libererArbre(&racine);
 }
-
+/*
 TEST(insererTrie) {
 // TO DO
 }

@@ -8,22 +8,22 @@
 
 #include "../eltsArbre.h"
 
-/** TO DO
+/**
  * @brief rechercher un point de valeur v
  * @param [in] racine pointeur vers la racine de l'arborescence 
  * @return 
  *   - l'adresse du point contenant v si v existe dans l'arborescence
  *   - NULL, sinon
  */
-// rechercher_v();
+cell_lvlh_t* rechercher_v(cell_lvlh_t* root, char v);
 
-/** TO DO
+/**
  * @brief rechercher le double prec de w dans une liste de fils
  * @param [in] adrPere l'adresse du pere
  * @param [in] w la valeur a inserer
  * @return l'adresse du pointeur prec apres lequel w doit etre inseree
  */
- // rechercherPrecFilsTries();
+cell_lvlh_t** rechercherPrecFilsTries(cell_lvlh_t* adrPere, char w);
 
  /** TO DO
  * @brief inserer une valeur w dans les fils d'un point de valeur v
