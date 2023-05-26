@@ -100,7 +100,6 @@ TEST(pref2lvlh1_exTP) {
 	libererArbre(&racine);
 }
 
-
 END_TEST_GROUP(ARBRE_CONSTRUCT)
 
 int main(void) {

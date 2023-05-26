@@ -67,7 +67,7 @@ void empiler(pile_t * pile, eltType_pile * ptVal, int * code)
     else
     {
         pile->sommet += 1;
-        copyElt(ptVal, pile->base + pile->sommet);
+        pile->base[pile->sommet] = *ptVal; 
         *code = 0;
     }
 }
