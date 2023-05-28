@@ -7,6 +7,7 @@
 #define __ARBRE_INSERTION_H__
 
 #include "../eltsArbre.h"
+#include "../Seance1/arbres_construct.h"
 
 /**
  * @brief rechercher un point de valeur v
@@ -32,6 +33,6 @@ cell_lvlh_t** rechercherPrecFilsTries(cell_lvlh_t* adrPere, char w);
  * @param [in] w la valeur a inserer
  * @return 1 - insertion realisee; 0 - insertion n'a pas ete realisee
  */
-// insererTrie();
+int insererTrie(cell_lvlh_t * racine, char v, char w);
 
 #endif

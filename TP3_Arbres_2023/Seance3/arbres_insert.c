@@ -55,7 +55,7 @@ cell_lvlh_t** rechercherPrecFilsTries(cell_lvlh_t* adrPere, char w)
   if((*cour) != NULL && (*cour)->val != w){
     cour = &(*cour)->lv;
   }
-  while((*cour)->val != w && (*cour)->lh != NULL){
+  while((*cour)->val < w && (*cour)->lh != NULL){
     cour = &(*cour)->lh;
   }
   return cour;
@@ -68,7 +68,27 @@ cell_lvlh_t** rechercherPrecFilsTries(cell_lvlh_t* adrPere, char w)
  * @param [in] w la valeur a inserer
  * @return 1 - insertion realisee; 0 - insertion n'a pas ete realisee
  */
-//  insererTrie()
-// {
-// // TO DO
-// }
+int insererTrie(cell_lvlh_t * racine, char v, char w)
+{
+  if (racine != NULL)
+  {
+    char save;
+    cell_lvlh_t * cour = NULL;
+    cell_lvlh_t ** courp = &cour;
+    cour = rechercher_v(racine, v);
+    if (cour == NULL)
+      return 0;
+    courp = rechercherPrecFilsTries(cour, w);
+    if (courp == NULL)
+      return 0;
+    save = (*courp)->val;
+    (*courp)->val = w;
+
+    cell_lvlh_t * new = allocPoint(save);
+    new->lh = (*courp)->lh;
+    (*courp)->lh = new;
+    return 1;  
+  }
+  else
+    return 0;
+}

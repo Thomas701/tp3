@@ -47,6 +47,9 @@ TEST(rechercher_v) {
 	REQUIRE( NULL != pere );
 	CHECK( 'A' == pere->val );
 
+	pere = rechercher_v(racine, 'F');   // valeur a la racine
+	CHECK( 'F' == pere->val );
+
 // autres tests a ajouter
 
 	libererArbre(&racine);
@@ -77,11 +80,24 @@ TEST(rechercherPrecFilsTries) {
 
 	libererArbre(&racine);
 }
-/*
-TEST(insererTrie) {
-// TO DO
+
+TEST(insererTrie) 
+{
+	int nbRacines = 0;
+	int nbEltsPref = 0;
+	eltPrefPostFixee_t tabEltPref[NB_ELTPREF_MAX];
+	cell_lvlh_t *racine = NULL;
+
+	printf("\033[35m\nrechercher_v :");
+	printf("\033[0m\n");
+
+	nbRacines = lirePref_fromFileName("../pref_exTP.txt", tabEltPref, &nbEltsPref);
+	racine = pref2lvlh(tabEltPref, nbRacines);
+
+	insererTrie(racine, 'F', 'A');
+	CHECK(racine->lh->lv->lv->val == 'A');
 }
-*/
+
 END_TEST_GROUP(ARBRE_INSERT)
 
 int main(void) {
