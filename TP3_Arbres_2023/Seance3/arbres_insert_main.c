@@ -50,8 +50,6 @@ TEST(rechercher_v) {
 	pere = rechercher_v(racine, 'F');   // valeur a la racine
 	CHECK( 'F' == pere->val );
 
-// autres tests a ajouter
-
 	libererArbre(&racine);
 }
 
@@ -76,7 +74,13 @@ TEST(rechercherPrecFilsTries) {
 	REQUIRE( NULL != *pprec );
 	CHECK( 'K' == (*pprec)->val );
 
-// autres tests a ajouter
+	pprec = rechercherPrecFilsTries(pere, 'L');
+	REQUIRE( NULL != *pprec );
+	CHECK( 'M' == (*pprec)->val );
+
+	pere = rechercher_v(racine, 'I');
+	pprec = rechercherPrecFilsTries(pere, 'R');
+	CHECK( NULL == (*pprec));
 
 	libererArbre(&racine);
 }
@@ -96,6 +100,22 @@ TEST(insererTrie)
 
 	insererTrie(racine, 'F', 'A');
 	CHECK(racine->lh->lv->lv->val == 'A');
+	insererTrie(racine, 'I', 'J');
+	CHECK(racine->lh->lv->lh->lv->val == 'J');
+	insererTrie(racine, 'I', 'B');
+	CHECK(racine->lh->lv->lh->lv->val == 'B');
+	CHECK(racine->lh->lv->lh->lv->lh->val == 'J');
+	insererTrie(racine, 'I', 'Q');
+	CHECK(racine->lh->lv->lh->lv->val == 'B');
+	CHECK(racine->lh->lv->lh->lv->lh->val == 'J');
+	CHECK(racine->lh->lv->lh->lv->lh->lh->val == 'Q');
+	insererTrie(racine, 'I', 'O');
+	CHECK(racine->lh->lv->lh->lv->val == 'B');
+	CHECK(racine->lh->lv->lh->lv->lh->val == 'J');
+	CHECK(racine->lh->lv->lh->lv->lh->lh->val == 'O');
+	CHECK(racine->lh->lv->lh->lv->lh->lh->lh->val == 'Q');
+
+	libererArbre(&racine);
 }
 
 END_TEST_GROUP(ARBRE_INSERT)

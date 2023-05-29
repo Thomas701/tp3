@@ -52,12 +52,9 @@ cell_lvlh_t* rechercher_v(cell_lvlh_t* root, char v)
 cell_lvlh_t** rechercherPrecFilsTries(cell_lvlh_t* adrPere, char w)
 {
   cell_lvlh_t** cour = &adrPere;
-  if((*cour) != NULL && (*cour)->val != w){
-    cour = &(*cour)->lv;
-  }
-  while((*cour)->val < w && (*cour)->lh != NULL){
+  cour = &(*cour)->lv;
+  while((*cour) != NULL && (*cour)->val < w)
     cour = &(*cour)->lh;
-  }
   return cour;
 }
 
@@ -79,14 +76,16 @@ int insererTrie(cell_lvlh_t * racine, char v, char w)
     if (cour == NULL)
       return 0;
     courp = rechercherPrecFilsTries(cour, w);
-    if (courp == NULL)
-      return 0;
-    save = (*courp)->val;
-    (*courp)->val = w;
-
-    cell_lvlh_t * new = allocPoint(save);
-    new->lh = (*courp)->lh;
-    (*courp)->lh = new;
+    if ((*courp) == NULL)
+      (*courp) = allocPoint(w);
+    else
+    {
+      save = (*courp)->val;
+      (*courp)->val = w;
+      cell_lvlh_t * new = allocPoint(save);
+      new->lh = (*courp)->lh;
+      (*courp)->lh = new;
+    }
     return 1;  
   }
   else
