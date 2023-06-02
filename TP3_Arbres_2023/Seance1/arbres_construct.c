@@ -157,4 +157,5 @@ void libererArbre(cell_lvlh_t ** racine)
     }
   }
   libererPile(&pile);
+  (*racine) = NULL;
 }
